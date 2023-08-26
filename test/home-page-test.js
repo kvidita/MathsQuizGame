@@ -1,5 +1,4 @@
 const { describe, it } = require("node:test");
-const assert = require("assert");
 const request = require("supertest");
 const { createApp } = require("../src/create-app");
 

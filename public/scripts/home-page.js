@@ -2,7 +2,17 @@ const handleLoggedOutPage = () => {
   return;
 };
 
-handleLoggedPage = () => {
+const addPlayEvent = (playButton) => {
+  playButton.onclick = () => {
+    fetch("/quiz-page")
+      .then((res) => res.url)
+      .then((pageLocation) => {
+        window.location.assign(pageLocation);
+      });
+  };
+};
+
+const handleLoggedPage = () => {
   const authenticationSection = document.querySelector("#loggin-state");
   const playButton = document.createElement("input");
   playButton.id = "play-quiz";
@@ -16,12 +26,13 @@ handleLoggedPage = () => {
   logoutButton.value = "logout";
   logoutButton.class = "button";
 
+  addPlayEvent(playButton);
+
   authenticationSection.append(playButton, logoutButton);
   console.log("user logged-in");
 };
 
 const manageAuthentication = () => {
-  console.log("manageAuthentication called");
   fetch("/user-authentication").then((res) => {
     return res.json();
   });
@@ -29,7 +40,6 @@ const manageAuthentication = () => {
     .then((res) => res.json())
     .then((authenticationDetails) => {
       const { login } = authenticationDetails;
-      console.log(authenticationDetails);
       if (login) {
         handleLoggedPage();
         return;

@@ -4,6 +4,7 @@ const {
   serveAuthenticationDetails,
   serveHomeScript,
 } = require("./handlers.js/serve-home");
+const { serveQuizPage } = require("./handlers.js/serve-quiz");
 
 const logger = (req, res, next) => {
   console.log(req.url, req.path, req.method);
@@ -15,8 +16,11 @@ const createApp = () => {
 
   app.use(logger);
   app.get("/", serveHome);
+  app.get("/quiz-page", serveQuizPage);
   app.get("/home-page", serveHomeScript);
   app.get("/user-authentication", serveAuthenticationDetails);
+
+  app.use(express.static("public"));
 
   return app;
 };

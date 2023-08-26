@@ -1,4 +1,3 @@
-const express = require("express");
 const { createApp } = require("./src/create-app");
 
 const main = () => {
