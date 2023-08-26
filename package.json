@@ -1,0 +1,17 @@
+{
+  "name": "mathsquizgame",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "main.js",
+  "scripts": {
+    "test": "test",
+    "dev": "node --watch main.js",
+    "start": "node main.js"
+  },
+  "author": "vidita kumari",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "nyc": "^15.1.0"
+  }
+}
