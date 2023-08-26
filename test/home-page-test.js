@@ -14,5 +14,15 @@ describe("app", () => {
         .expect("content-type", "text/html; charset=UTF-8")
         .end(done);
     });
+
+    it("should serve the login details of user", (_, done) => {
+      const app = createApp();
+
+      request(app)
+        .get("/user-authentication")
+        .expect(200)
+        .expect("content-type", "application/json; charset=utf-8")
+        .end(done);
+    });
   });
 });

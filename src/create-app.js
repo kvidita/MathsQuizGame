@@ -1,5 +1,9 @@
 const express = require("express");
-const { serveHome } = require("./handlers.js/serve-home");
+const {
+  serveHome,
+  serveAuthenticationDetails,
+  serveHomeScript,
+} = require("./handlers.js/serve-home");
 
 const logger = (req, res, next) => {
   console.log(req.url, req.path, req.method);
@@ -11,6 +15,8 @@ const createApp = () => {
 
   app.use(logger);
   app.get("/", serveHome);
+  app.get("/home-page", serveHomeScript);
+  app.get("/user-authentication", serveAuthenticationDetails);
 
   return app;
 };
