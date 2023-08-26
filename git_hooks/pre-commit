@@ -1,0 +1,10 @@
+#! /bin/bash/
+
+echo "running eslint"
+npx run eslint
+
+echo "running tests"
+npx run test
+
+echo "checking test coverage"
+npx run nyc
