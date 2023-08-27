@@ -14,4 +14,16 @@ describe("app", () => {
         .end(done);
     });
   });
+
+  describe("serveUserDetails", () => {
+    it("should provide the user details", (_, done) => {
+      const app = createApp();
+
+      request(app)
+        .get("/user-details")
+        .expect(200)
+        .expect("content-type", "application/json; charset=utf-8")
+        .end(done);
+    });
+  });
 });
