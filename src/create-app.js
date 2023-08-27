@@ -4,9 +4,10 @@ const {
   serveAuthenticationDetails,
   serveHomeScript,
 } = require("./handlers.js/serve-home");
-const { serveQuizPage } = require("./handlers.js/serve-quiz");
+const { serveQuizPage } = require("./handlers.js/serve-quiz-page");
 const { serveUserDetails } = require("./handlers.js/serve-user-details");
 const { serveQuizScript } = require("./handlers.js/serve-quiz-script");
+const { serveQuiz } = require("./handlers.js/serve-quiz");
 
 const logger = (req, res, next) => {
   console.log(req.url, req.path, req.method);
@@ -20,6 +21,7 @@ const createApp = () => {
   app.get("/", serveHome);
   app.get("/quiz-page", serveQuizPage);
   app.get("/home-page", serveHomeScript);
+  app.get("/quiz", serveQuiz);
   app.get("/user-details", serveUserDetails);
   app.get("/quiz-details", serveQuizScript);
   app.get("/user-authentication", serveAuthenticationDetails);

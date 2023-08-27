@@ -26,4 +26,16 @@ describe("app", () => {
         .end(done);
     });
   });
+
+  describe("serveQuiz", () => {
+    it("should serve a quiz to the user", (_, done) => {
+      const app = createApp();
+
+      request(app)
+        .get("/quiz")
+        .expect(200)
+        .expect("content-type", "application/json; charset=utf-8")
+        .end(done);
+    });
+  });
 });

@@ -9,13 +9,17 @@ const renderUserDetails = ({ userName, matchPlayed, score }) => {
   scoreElement.innerText = `Score: ${score}`;
 
   userDetailsSection.append(nameElement, matchStatElement, scoreElement);
-  console.log(userName, matchPlayed, score);
 };
 
 const manageQuiz = () => {
   fetch("/user-details")
     .then((res) => res.json())
-    .then(renderUserDetails);
+    .then(renderUserDetails)
+    .then(() => {
+      fetch("/quiz")
+        .then((res) => res.json())
+        .then(console.log);
+    });
 };
 
 const main = () => {
