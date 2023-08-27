@@ -1,9 +1,15 @@
 const renderQuiz = ({ operand1, operand2, operator }) => {
   const quizSectionElement = document.querySelector("#quiz");
   const quizElement = document.createElement("div");
-  quizElement.innerText = `${operand1}\t${operator}\t${operand2}\t=\t?`;
+  const answerButton = document.createElement("input");
 
-  quizSectionElement.appendChild(quizElement);
+  quizElement.innerText = `${operand1}\t${operator}\t${operand2}\t=\t?`;
+  answerButton.type = "text";
+  answerButton.classList.add("answer");
+  answerButton.placeholder = "your answer";
+  answerButton.id = "answer";
+
+  quizSectionElement.append(quizElement, answerButton);
 };
 
 const renderUserDetails = ({ userName, matchPlayed, score }) => {

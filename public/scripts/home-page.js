@@ -4,7 +4,7 @@ const handleLoggedOutPage = () => {
 
 const addPlayEvent = (playButton) => {
   playButton.onclick = () => {
-    fetch("/quiz-page")
+    fetch("/html/quiz-page.html")
       .then((res) => res.url)
       .then((pageLocation) => {
         window.location.assign(pageLocation);
@@ -33,13 +33,11 @@ const handleLoggedPage = () => {
 };
 
 const manageAuthentication = () => {
-  fetch("/user-authentication").then((res) => {
-    return res.json();
-  });
   fetch("/user-authentication")
     .then((res) => res.json())
     .then((authenticationDetails) => {
       const { login } = authenticationDetails;
+      console.log(login);
       if (login) {
         handleLoggedPage();
         return;

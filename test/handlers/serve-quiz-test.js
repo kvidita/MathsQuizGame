@@ -8,7 +8,7 @@ describe("app", () => {
       const app = createApp();
 
       request(app)
-        .get("/quiz-page")
+        .get("/html/quiz-page.html")
         .expect(200)
         .expect("content-type", "text/html; charset=UTF-8")
         .end(done);
