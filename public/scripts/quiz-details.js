@@ -1,3 +1,11 @@
+const renderQuiz = ({ operand1, operand2, operator }) => {
+  const quizSectionElement = document.querySelector("#quiz");
+  const quizElement = document.createElement("div");
+  quizElement.innerText = `${operand1}\t${operator}\t${operand2}\t=\t?`;
+
+  quizSectionElement.appendChild(quizElement);
+};
+
 const renderUserDetails = ({ userName, matchPlayed, score }) => {
   const userDetailsSection = document.querySelector("#user-details");
 
@@ -18,7 +26,7 @@ const manageQuiz = () => {
     .then(() => {
       fetch("/quiz")
         .then((res) => res.json())
-        .then(console.log);
+        .then(renderQuiz);
     });
 };
 
