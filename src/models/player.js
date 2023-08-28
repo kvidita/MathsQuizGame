@@ -29,6 +29,11 @@ class Player {
     this.#currentQuestion = question; //format {operand1, operand2, operator}
   }
 
+  addScore() {
+    this.#matchPlayed += 1;
+    this.#score += 10;
+  }
+
   currentQuestionAnswer() {
     let answer = 0;
     const { operand1, operand2, operator } = this.#currentQuestion;
