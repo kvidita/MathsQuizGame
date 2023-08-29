@@ -1,15 +1,25 @@
 const renderQuiz = ({ operand1, operand2, operator }) => {
   const quizSectionElement = document.querySelector("#quiz");
   const quizElement = document.createElement("div");
-  const answerButton = document.createElement("input");
+
+  //form to submit the answer
+  const answerForm = document.createElement("form");
+  const answerLabel = document.createElement("label");
+  const answerArea = document.createElement("input");
+  
+  answerForm.action = "/answer";
+  answerForm.method = "post";
+  answerLabel.for = "ans";
+  answerLabel.class = "ans";
+  answerArea.type = "text";
+  answerArea.placeholder = "answer";
+  answerArea.id = "ans";
 
   quizElement.innerText = `${operand1}\t${operator}\t${operand2}\t=\t?`;
-  answerButton.type = "text";
-  answerButton.classList.add("answer");
-  answerButton.placeholder = "your answer";
-  answerButton.id = "answer";
+  quizElement.classList.add("quiz");
 
-  quizSectionElement.append(quizElement, answerButton);
+  answerForm.append(answerLabel, answerArea);
+  quizSectionElement.append(quizElement, answerForm);
 };
 
 const renderUserDetails = ({ userName, matchPlayed, score }) => {

@@ -42,7 +42,7 @@ const handleLoggedOutPage = () => {
 
 const addLoginPlayEvent = (playButton) => {
   playButton.onclick = () => {
-    fetch("/html/quiz-page.html")
+    fetch("/quiz-page")
       .then((res) => res.url)
       .then((pageLocation) => {
         window.location.assign(pageLocation);

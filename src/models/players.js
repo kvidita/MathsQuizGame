@@ -19,6 +19,14 @@ class Players {
   playerDetails(playerId) {
     return this.#players[playerId].currentStats();
   }
+
+  getPlayer(playerId) {
+    return this.#players[playerId];
+  }
+
+  questionEntity(question, playerId) {
+    this.#players[playerId].questionEntity(question);
+  }
 }
 
 module.exports = Players;

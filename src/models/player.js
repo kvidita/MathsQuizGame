@@ -25,7 +25,7 @@ class Player {
     return { matchPlayed: this.#matchPlayed, score: this.#score };
   }
 
-  set questionEntity(question) {
+  questionEntity(question) {
     this.#currentQuestion = question; //format {operand1, operand2, operator}
   }
 
