@@ -2,6 +2,78 @@
 
 ---
 
+### UI changes
+
+- reduce shadow of quiz-box
+- play quiz button should be large
+- appropriate padding for quiz-section
+- aligning player's stats
+- increase size of answer box
+
+### player entity
+
+```
+#### Player (done)
+  fields:
+    name;(constructor)
+    password;(constructor)
+    matchPlayed;
+    score;
+    currentStats;
+    questionsAttempted;
+
+  getters:
+    name;
+    password;
+    currentStats;
+    questionsAttempted;
+
+  methods:
+    updateCurrentMatchResult;
+
+```
+
+### players entity
+
+```
+#### Players
+```
+
+### storage entity
+
+```
+UserStorage
+  fields:
+    storagePath;
+    fileReader;
+    fileWriter;
+
+  methods:
+    store;
+    restore;
+```
+
+### User data
+
+```
+Storage:
+  Players:
+    {
+      playerId1:  {
+                    name:"vidita",
+                    password: "124",
+                    questionAttempted: [{question, answer, response}],
+                    currentStat:  {
+                                    name: "vidita"
+                                    matchPlayed:2,
+                                    score: 20
+                                  }
+                  }
+    }
+```
+
+---
+
 ## Requirement 1
 
 ---
@@ -26,9 +98,8 @@ Player
   fields:-
     name
     password
-    matchPlayed
-    score
-    current question
+    questionsAttempted
+    current stats = {name, matchPlayed, score}
 
   methods:-
     getters:-
@@ -36,5 +107,5 @@ Player
       password
     other:-
       currentStats
-      currentQuestion
+
 ```

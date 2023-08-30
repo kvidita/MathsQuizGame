@@ -2,72 +2,69 @@ const { describe, it } = require("node:test");
 const assert = require("assert");
 const Player = require("../../src/models/player");
 
-describe("Player", () => {
+describe("player", () => {
   describe("name", () => {
-    it("should be vidita", () => {
-      const vidita = new Player("vidita", "abcd");
+    it("should be 'vidita'", () => {
+      const name = "vidita";
+      const password = "123";
+      const player = new Player(name, password);
 
-      assert.strictEqual(vidita.name, "vidita");
+      assert.strictEqual(player.name, "vidita");
     });
   });
 
   describe("password", () => {
-    it("should be abcd", () => {
-      const vidita = new Player("vidita", "abcd");
+    it("should be 123", () => {
+      const name = "vidita";
+      const password = "123";
+      const player = new Player(name, password);
 
-      assert.strictEqual(vidita.password, "abcd");
+      assert.strictEqual(player.password, "123");
     });
   });
 
   describe("currentStats", () => {
-    it("should be 0 match-played and 0 score", () => {
-      const vidita = new Player("vidita", "abcd");
-      const actual = vidita.currentStats();
-      const expected = { matchPlayed: 0, score: 0 };
+    it("should be 0 match played with 0 score", () => {
+      const name = "vidita";
+      const password = "123";
+      const player = new Player(name, password);
+
+      const actual = player.currentStats;
+      const expected = {
+        name: "vidita",
+        matchPlayed: 0,
+        score: 0,
+      };
+
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should be 1 match played with a score of 10", () => {
+      const name = "vidita";
+      const password = "123";
+      const player = new Player(name, password);
+      const matchResult = { question: "1+1=?", answer: 2, response: 2 };
+
+      player.updateCurrentMatchResult(matchResult);
+
+      const actual = player.currentStats;
+      const expected = {
+        name: "vidita",
+        matchPlayed: 1,
+        score: 10,
+      };
 
       assert.deepStrictEqual(actual, expected);
     });
   });
 
-  describe("currentQuestionAnswer", () => {
-    it("should be 4", () => {
-      const vidita = new Player("vidita, abcd");
+  describe("questionsAttempted", () => {
+    it("should be an empty list", () => {
+      const name = "vidita";
+      const password = "123";
+      const player = new Player(name, password);
 
-      vidita.questionEntity = { operand1: 2, operand2: 2, operator: "+" };
-      const actual = vidita.currentQuestionAnswer();
-      const expected = 4;
-
-      assert.strictEqual(actual, expected);
-    });
-
-    it("should be 0", () => {
-      const vidita = new Player("vidita, abcd");
-
-      vidita.questionEntity = { operand1: 1, operand2: 1, operator: "-" };
-      const actual = vidita.currentQuestionAnswer();
-      const expected = 0;
-
-      assert.strictEqual(actual, expected);
-    });
-
-    it("should be 3", () => {
-      const vidita = new Player("vidita, abcd");
-
-      vidita.questionEntity = { operand1: 1, operand2: 3, operator: "*" };
-      const actual = vidita.currentQuestionAnswer();
-      const expected = 3;
-
-      assert.strictEqual(actual, expected);
-    });
-
-    it("should be 5", () => {
-      const vidita = new Player("vidita, abcd");
-
-      vidita.questionEntity = { operand1: 10, operand2: 2, operator: "/" };
-      const actual = vidita.currentQuestionAnswer();
-      const expected = 5;
-
-      assert.strictEqual(actual, expected);
+      assert.deepStrictEqual(player.questionsAttempted, []);
     });
   });
 });

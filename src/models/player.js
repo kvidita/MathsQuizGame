@@ -2,15 +2,15 @@ class Player {
   #name;
   #password;
   #matchPlayed;
-  #score;
-  #currentQuestion;
+  #totalScore;
+  #questionsAttempted;
 
   constructor(name, password) {
     this.#name = name;
     this.#password = password;
     this.#matchPlayed = 0;
-    this.#score = 0;
-    this.#currentQuestion = {};
+    this.#totalScore = 0;
+    this.#questionsAttempted = [];
   }
 
   get name() {
@@ -21,36 +21,25 @@ class Player {
     return this.#password;
   }
 
-  currentStats() {
-    return { matchPlayed: this.#matchPlayed, score: this.#score };
+  get currentStats() {
+    return {
+      name: this.#name,
+      matchPlayed: this.#matchPlayed,
+      score: this.#totalScore,
+    };
   }
 
-  questionEntity(question) {
-    this.#currentQuestion = question; //format {operand1, operand2, operator}
+  get questionsAttempted() {
+    return [...this.#questionsAttempted];
   }
 
-  addScore() {
+  updateCurrentMatchResult(playerResponse) {
+    const { question, answer, response } = playerResponse;
+    const score = answer === response ? 10 : 0;
+
     this.#matchPlayed += 1;
-    this.#score += 10;
-  }
-
-  currentQuestionAnswer() {
-    let answer = 0;
-    const { operand1, operand2, operator } = this.#currentQuestion;
-    switch (operator) {
-      case "+":
-        answer = operand1 + operand2;
-        break;
-      case "-":
-        answer = operand1 - operand2;
-        break;
-      case "/":
-        answer = operand1 / operand2;
-        break;
-      default:
-        answer = operand1 * operand2;
-    }
-    return answer;
+    this.#questionsAttempted.push(playerResponse);
+    this.#totalScore += score;
   }
 }
 

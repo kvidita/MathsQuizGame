@@ -6,12 +6,13 @@ const renderQuiz = ({ operand1, operand2, operator }) => {
   const answerForm = document.createElement("form");
   const answerLabel = document.createElement("label");
   const answerArea = document.createElement("input");
-  
+
   answerForm.action = "/answer";
   answerForm.method = "post";
   answerLabel.for = "ans";
   answerLabel.class = "ans";
-  answerArea.type = "text";
+  answerArea.type = "number";
+  answerArea.required = true;
   answerArea.placeholder = "answer";
   answerArea.id = "ans";
 
